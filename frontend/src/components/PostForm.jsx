@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import API from "../api";
+import { getVideoEmbedUrl } from "../utils/mediaUtils";
 
 function PostForm({ user, refreshPosts }) {
     const [content, setContent] = useState("");
@@ -79,6 +80,14 @@ function PostForm({ user, refreshPosts }) {
                     <div className="media-preview-container">
                         {mediaType === "image" ? (
                             <img src={mediaUrl} alt="preview" className="media-preview" />
+                        ) : getVideoEmbedUrl(mediaUrl) ? (
+                            <iframe
+                                src={getVideoEmbedUrl(mediaUrl)}
+                                className="media-preview"
+                                style={{ aspectRatio: "16 / 9", width: "100%", border: "none" }}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
                         ) : (
                             <video src={mediaUrl} controls className="media-preview" />
                         )}

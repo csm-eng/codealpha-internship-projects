@@ -166,9 +166,6 @@ function AuthPage({ onAuthSuccess }) {
 
         setIsLoading(true);
         try {
-            // TEMP DEBUG — remove after diagnosing
-            console.log("Submitting reset with token:", JSON.stringify(resetToken.trim()));
-
             const res = await API.post(`/users/reset-password/${resetToken.trim()}`, {
                 password: newPassword
             });
@@ -247,9 +244,11 @@ function AuthPage({ onAuthSuccess }) {
                                         <label>Name</label>
                                         <input
                                             type="text"
+                                            name="name"
                                             placeholder="Enter your name"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
+                                            autoComplete="name"
                                             required
                                         />
                                     </div>
@@ -259,9 +258,11 @@ function AuthPage({ onAuthSuccess }) {
                                     <label>Email</label>
                                     <input
                                         type="email"
+                                        name="email"
                                         placeholder="Enter your email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        autoComplete="username"
                                         required
                                     />
                                 </div>
@@ -270,9 +271,11 @@ function AuthPage({ onAuthSuccess }) {
                                     <label>Password</label>
                                     <input
                                         type="password"
+                                        name="password"
                                         placeholder="Enter your password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
+                                        autoComplete={isRegister ? "new-password" : "current-password"}
                                         required
                                     />
                                 </div>

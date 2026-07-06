@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import API from "../api";
+import { getVideoEmbedUrl } from "../utils/mediaUtils";
 
 function PostCard({ post, currentUser, refreshPosts, onProfileClick }) {
 
@@ -193,6 +194,16 @@ function PostCard({ post, currentUser, refreshPosts, onProfileClick }) {
                             src={post.mediaUrl}
                             className="card-media"
                             alt=""
+                        />
+
+                    ) : getVideoEmbedUrl(post.mediaUrl) ? (
+
+                        <iframe
+                            src={getVideoEmbedUrl(post.mediaUrl)}
+                            className="card-media"
+                            style={{ aspectRatio: "16 / 9", width: "100%", border: "none" }}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
                         />
 
                     ) : (
