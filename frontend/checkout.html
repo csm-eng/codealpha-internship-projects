@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="nav-brand">Shop<span>Ease</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="cart.html" class="nav-item cart-badge-wrapper">Cart <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="orders.html" class="nav-item" id="navOrders" style="display: none;">My Orders</a></li>
+                <li><a href="admin.html" class="nav-item" id="navAdmin" style="display: none;">Admin</a></li>
+            </ul>
+            <div class="nav-actions" id="navActions">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 30px;">
+        <h2 style="font-size: 2rem; margin-bottom: 20px; font-family: var(--font-heading);">Checkout</h2>
+
+        <div class="split-layout">
+            <!-- Left side: Billing & Shipping form -->
+            <div class="split-main" style="background-color: var(--card-bg); border-radius: var(--radius-md); padding: 30px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+                <h3 style="font-family: var(--font-heading); margin-bottom: 20px;">Shipping Address</h3>
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="form-label">Delivery Address</label>
+                        <textarea id="address" class="form-control" placeholder="Enter your full address (Street, City, State, ZIP)" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; margin-top: 10px;">
+                        Place Order (Cash on Delivery)
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right side: Order Summary preview -->
+            <div class="split-sidebar">
+                <div class="summary-card">
+                    <h3 class="summary-title">Your Order</h3>
+                    <div id="checkoutItems" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px;">
+                        <!-- Items list -->
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="checkoutSubtotal">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span style="color: var(--success); font-weight: 600;">FREE</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Amount</span>
+                        <span id="checkoutTotal">₹0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/checkout.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="nav-brand">Shop<span>Ease</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="cart.html" class="nav-item cart-badge-wrapper">Cart <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="orders.html" class="nav-item" id="navOrders" style="display: none;">My Orders</a></li>
+                <li><a href="admin.html" class="nav-item" id="navAdmin" style="display: none;">Admin</a></li>
+            </ul>
+            <div class="nav-actions" id="navActions">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 50px;">
+        <div style="text-align: center; padding: 50px; background-color: var(--card-bg); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); max-width: 600px; margin: 0 auto;">
+            <div style="font-size: 5rem; margin-bottom: 20px; animation: bounce 1s infinite alternate;">🎉</div>
+            <h2 style="font-size: 2.2rem; font-family: var(--font-heading); margin-bottom: 12px; color: var(--success);">Order Placed Successfully!</h2>
+            <h3 style="font-size: 1.1rem; color: var(--secondary); font-weight: 500; margin-bottom: 15px;">Thank you for shopping with ShopEase.</h3>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem; line-height: 1.6;">
+                Your order is being processed and will be shipped soon. You can track its status under the "My Orders" tab in your profile.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="orders.html" class="btn btn-secondary">Track Orders</a>
+                <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+
+</body>
+
+</html>

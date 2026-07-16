@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="nav-brand">Shop<span>Ease</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="cart.html" class="nav-item cart-badge-wrapper">Cart <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="orders.html" class="nav-item" id="navOrders" style="display: none;">My Orders</a></li>
+                <li><a href="admin.html" class="nav-item active" id="navAdmin" style="display: none;">Admin</a></li>
+            </ul>
+            <div class="nav-actions" id="navActions">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="admin-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="admin-sidebar">
+                <h3 style="font-size: 1.15rem; margin-bottom: 20px; font-family: var(--font-heading); color: var(--secondary); padding-left: 8px;">Dashboard</h3>
+                <nav class="sidebar-nav">
+                    <div class="sidebar-nav-item active" onclick="switchSection('overview')">Overview</div>
+                    <div class="sidebar-nav-item" onclick="switchSection('products')">Manage Products</div>
+                    <div class="sidebar-nav-item" onclick="switchSection('orders')">Manage Orders</div>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="admin-main">
+                
+                <!-- Section 1: Overview -->
+                <section id="section-overview" class="admin-content-section active">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 24px; font-family: var(--font-heading);">Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-title">Total Sales</div>
+                            <div class="stat-card-value" id="statSales">₹0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-title">Total Orders</div>
+                            <div class="stat-card-value" id="statOrders">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-title">Total Products</div>
+                            <div class="stat-card-value" id="statProducts">0</div>
+                        </div>
+                    </div>
+
+                    <div style="background-color: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--border-color); padding: 30px; box-shadow: var(--shadow-sm); margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
+                        <h3 style="font-family: var(--font-heading);">Admin Actions</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Welcome to the store administration panel. Here you can add or remove products from the catalog, update pricing, description, edit stock details and fulfill customer orders in real-time.</p>
+                        <div style="display: flex; gap: 12px; margin-top: 5px;">
+                            <button class="btn btn-primary btn-sm" onclick="switchSection('products')">Add Products</button>
+                            <button class="btn btn-secondary btn-sm" onclick="switchSection('orders')">View Orders</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Manage Products -->
+                <section id="section-products" class="admin-content-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 15px;">
+                        <h2 style="font-size: 1.8rem; font-family: var(--font-heading);" id="productSecTitle">Add New Product</h2>
+                        <button class="btn btn-secondary btn-sm" id="resetProductFormBtn" style="display: none;" onclick="resetProductForm()">Cancel Edit</button>
+                    </div>
+
+                    <!-- Add/Edit Form -->
+                    <div style="background-color: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--border-color); padding: 30px; box-shadow: var(--shadow-sm); margin-bottom: 40px;">
+                        <form id="productForm">
+                            <input type="hidden" id="productId">
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Product Name</label>
+                                    <input type="text" id="name" class="form-control" placeholder="e.g. Wireless Headphones" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price" class="form-label">Price (₹)</label>
+                                    <input type="number" id="price" class="form-control" placeholder="e.g. 599" min="0" required>
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div class="form-group">
+                                    <label for="image" class="form-label">Image URL</label>
+                                    <input type="url" id="image" class="form-control" placeholder="https://images.unsplash.com/photo...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category" class="form-label">Category</label>
+                                    <select id="category" class="form-control" required>
+                                        <option value="" disabled selected>Select Category</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Fashion">Fashion</option>
+                                        <option value="Home">Home & Living</option>
+                                        <option value="Sports">Sports</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea id="description" class="form-control" placeholder="Enter product description..." rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="btn btn-primary" style="padding: 12px 24px;">
+                                Add Product
+                            </button>
+                        </form>
+                    </div>
+
+                    <h3 style="font-size: 1.3rem; font-family: var(--font-heading); margin-bottom: 15px;">All Catalog Products</h3>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 3: Manage Orders -->
+                <section id="section-orders" class="admin-content-section">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 24px; font-family: var(--font-heading);">Manage Customer Orders</h2>
+                    
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer Details</th>
+                                    <th>Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>

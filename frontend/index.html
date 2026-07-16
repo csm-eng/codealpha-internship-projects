@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Premium E-Commerce Store</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="nav-brand">Shop<span>Ease</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item active">Home</a></li>
+                <li><a href="cart.html" class="nav-item cart-badge-wrapper">Cart <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="orders.html" class="nav-item" id="navOrders" style="display: none;">My Orders</a></li>
+                <li><a href="admin.html" class="nav-item" id="navAdmin" style="display: none;">Admin</a></li>
+            </ul>
+            <div class="nav-actions" id="navActions">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Discover Premium Products</h1>
+            <p>Elevate your lifestyle with our curated collection of high-quality goods, designed for comfort and modern aesthetic.</p>
+            <button class="btn btn-primary" onclick="document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' })">
+                Shop Collection
+            </button>
+        </header>
+
+        <!-- Catalog Section -->
+        <section id="productsSection" style="padding-top: 20px;">
+            <!-- Category Filters -->
+            <div class="categories-container" id="categoriesContainer">
+                <button class="category-tab active" onclick="filterCategory('All')">All Products</button>
+                <button class="category-tab" onclick="filterCategory('Electronics')">Electronics</button>
+                <button class="category-tab" onclick="filterCategory('Fashion')">Fashion</button>
+                <button class="category-tab" onclick="filterCategory('Home')">Home & Living</button>
+                <button class="category-tab" onclick="filterCategory('Sports')">Sports</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="products">
+                <!-- Loaded Dynamically via JS -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
